@@ -9,21 +9,20 @@ import { fileURLToPath } from 'url';
 import rfs from 'rotating-file-stream'
 import { tokenHanller } from './src/middlewares/tokenHanler.js'
 import userRouter from './src/routes/user.js'
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-
-var accessLogStream = rfs.createStream('access.log', { 
-    interval: '1d',
-    path: path.join(__dirname, 'log')
- })
-
-
+import './src/config/database.js'
 
 
 // config env
 config()
 const PORT = process.env.PORT || 3000
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+var accessLogStream = rfs.createStream('access.log', {
+    interval: '1d',
+    path: path.join(__dirname, 'log')
+})
 
 
 // Tạo http server và express app
@@ -37,9 +36,10 @@ app.use(express.json())
 
 
 // setup the logger
-app.use(morgan(':method :url :response-time', { stream: accessLogStream }))
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms', { stream: accessLogStream }))
 
-app.use(tokenHanller)
+
+// app.use(tokenHanller)
 // run server
 httpServer.listen(PORT, () => {
     console.log(`Nodejs server listen on port ${PORT}`)
@@ -50,6 +50,7 @@ httpServer.listen(PORT, () => {
 app.get('/', (req, res) => {
     res.send('Chào mừng bạn đến với khóa học Nodejs')
 })
+
 app.use('/user', userRouter)
 
 // Error Handler
