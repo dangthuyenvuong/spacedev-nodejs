@@ -1,249 +1,150 @@
-::1 - - [21/Jan/2023:05:48:44 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.80 Safari/537.36 Edg/98.0.1108.43"
-POST /user 2.179
-POST /user 0.507
-POST /user 3007.545
-POST /user 3010.666
-POST /user 0.862
-POST /user 0.573
-POST /user 0.930
-POST /user 1.156
-POST /user 0.429
-POST /user 1.494
-POST /user 2.564
-POST /user 2.772
-POST /user 2.962
-POST /user 4.132
-POST /user 2.969
-POST /user 3006.170
-POST /user 1.663
-POST /user 1.756
-POST /user 0.472
-POST /user 0.333
-POST /user 0.240
-POST /user 0.308
-POST /user 0.201
-POST /user 0.344
-POST /user 3011.302
-POST /user 0.502
-POST /user 0.580
-GET /user 4.734
-GET /user 2.498
-GET /user 3.343
-GET /user 0.667
-GET /user 0.574
-POST /user 4.443
-POST /user 4.967
-POST /user 3009.940
-POST /user 0.588
-POST /user 0.410
-POST /user 0.451
-POST /user 5.109
-POST /user 1.811
-POST /user 0.708
-POST /user 3001.705
-POST /user 0.532
-POST /user 0.469
-POST /user 4.208
-POST /user 3.350
-POST /user 3006.619
-POST /user 0.603
-POST /user 7.661
-POST /user 3.626
-POST /user 0.580
-POST /user 0.680
-POST /user 0.607
-POST /user 0.696
-POST /user 0.465
-POST /user 0.440
-POST /user 2.917
-POST /user 0.567
-POST /user 2.784
-POST /user 28.196
-POST /user 12.059
-POST /user 8.061
-POST /user 16.375
-POST /user 18.392
-POST /user 25.456
-POST /user 11.818
-POST /user 24.803
-POST /user 9.161
-POST /user 18.925
-POST /user 9.541
-POST /user 20.956
-POST /user 9.704
-POST /user 16.500
-POST /user 17.362
-POST /user 6.119
-POST /user 9.479
-POST /user 13.198
-POST /user 2.746
-POST /user 9.702
-POST /user 9.364
-POST /user 6.597
-POST /user 6.971
-POST /user 19.816
-POST /user 6.718
-POST /user 3.477
-POST /user 27.293
-POST /user 12.441
-POST /user 23.718
-POST /user 13.343
-POST /user 24.909
-POST /user 12.788
-POST /user 21.296
-POST /user 17.447
-POST /user 13.247
-POST /user 17.673
-POST /user 15.637
-POST /user 17.029
-POST /user 18.509
-POST /user 11.752
-POST /user 12.655
-POST /user 8.899
-POST /user 8.304
-POST /user 8.268
-POST /user 8.792
-POST /user 7.446
-POST /user 7.122
-POST /user 10.282
-POST /user 7.037
-POST /user 6.798
-POST /user 5.657
-POST /user 6.135
-POST /user 20.138
-POST /user 17.744
-POST /user 16.018
-POST /user 8.039
-POST /user 5.703
-POST /user 0.499
-POST /user 7.070
-POST /user 1.379
-POST /user 1.202
-POST /user 7.332
-POST /user 1.461
-POST /user 0.944
-POST /user 7.094
-POST /user 2.861
-POST /user 3.832
-POST /user 0.616
-POST /user 0.320
-POST /user 0.542
-POST /user 11.717
-POST /user 16.060
-POST /user 5.412
-POST /user 5.881
-POST /user 9.975
-POST /user 4.664
-GET /user 39.062
-GET /user 23.710
-GET /user 14.141
-POST /user 25.555
-GET /user 8.904
-GET /user 8.529
-GET /user 5.424
-GET /user 6.643
-GET /user 19.951
-DELETE /user/dangthuyenvuong@gmail.com 5.114
-DELETE /user/dangthuyenvuong@gmail.com 22.480
-DELETE /user/dangthuyenvuong@gmail.com 15.111
-DELETE /user/dangthuyenvuong@gmail.com 8.311
-DELETE /user/dangthuyenvuong@gmail.com 14.905
-DELETE /user/dangthuyenvuong11@gmail.com 12.106
-GET /user 18.612
-POST /user 24.039
-DELETE /user/dangthuyenvuong11@gmail.com 9.115
-PATCH /user/dangthuyenvuong@gmail.com 2.524
-PATCH /user/dangthuyenvuong@gmail.com 19.690
-PATCH /user/dangthuyenvuong@gmail.com 11.254
-PATCH /user/dangthuyenvuong@gmail.com 13.289
-PATCH /user/dangthuyenvuong@gmail.com 6.590
-PATCH /user/dangthuyenvuong@gmail.com 13.716
-PATCH /user/dangthuyenvuong11@gmail.com 6.309
-GET /user 9.518
-POST /user 11.790
-PATCH /user/dangthuyenvuong11@gmail.com 14.935
-PATCH /user/dangthuyenvuong11@gmail.com 12.691
-PATCH /user/dangthuyenvuong11@gmail.com 11.004
-PATCH /user/dangthuyenvuong11@gmail.com 9.666
-PATCH /user/dangthuyenvuong11@gmail.com 5.506
-PATCH /user/dangthuyenvuong11@gmail.com 7.851
-PATCH /user/dangthuyenvuong11@gmail.com 5.588
-PATCH /user/dangthuyenvuong11@gmail.com 15.324
-PATCH /user/dangthuyenvuong11@gmail.com 12.745
-PATCH /user/dangthuyenvuong11@gmail.com 6.231
-PATCH /user/dangthuyenvuong11@gmail.com 6.906
-PATCH /user/dangthuyenvuong11@gmail.com 5.055
-PATCH /user/dangthuyenvuong11@gmail.com 5.091
-PATCH /user/dangthuyenvuong11@gmail.com 9.905
-GET /user 30.440
-POST /user 33.799
-PATCH /user/dangthuyenvuong11@gmail.com 36.901
-GET /user 10.934
-POST /user 21.515
-POST /user 22.838
-POST /user 27.122
-POST /user 9.290
-GET /user 23.227
-GET /user/dangthuyenvuong@gmail.com 35.662
-GET /user 8.222
-GET /user/dangthuyenvuong@gmail.com 8.156
-GET /user/dangthuyenvuong@gmail.com 21.948
-GET /user 17.130
-POST /user 23.733
-GET /user 8.990
-POST /user 33.502
-GET /user/dangthuyenvuong@gmail.com 31.481
-GET /user/dangthuyenvuong@gmail.com 13.434
-GET /user/dangthuyenvuong@gmail.com 19.283
-GET /user/dangthuyenvuong@gmail.com 27.129
-GET /user/dangthuyenvuong@gmail.com 19.645
-GET /user/dangthuyenvuong@gmail.com 6.099
-GET /user 18.003
-POST /user 18.925
-GET /user 10.964
-GET /user/dangthuyenvuong@gmail.com 10.491
-GET /user/dangthuyenvuong@gmail.com 16.078
-GET /user/dangthuyenvuong@gmail.com 20.384
-GET /user/dangthuyenvuong@gmail.com 6.847
-GET /user/dangthuyenvuong@gmail.com 23.871
-GET /user/dangthuyenvuong@gmail.com 24.026
-GET /user/dangthuyenvuong@gmail.com 23.899
-GET /user/dangthuyenvuong@gmail.com 22.338
-GET /user/dangthuyenvuong@gmail.com 19.513
-GET /user/dangthuyenvuong@gmail.com 23.042
-GET /user/dangthuyenvuong@gmail.com 21.936
-GET /user/dangthuyenvuong@gmail.com 22.264
-GET /user/dangthuyenvuong@gmail.com 22.291
-GET /user/dangthuyenvuong@gmail.com 51.088
-GET /user/dangthuyenvuong@gmail.com 24.918
-GET /user/dangthuyenvuong@gmail.com 22.442
-GET /user 200 209 - 33.288 ms
-GET /user 200 209 - 21.391 ms
-GET /user 200 209 - 18.695 ms
-GET /user 200 209 - 10.890 ms
-GET /user 200 209 - 22.453 ms
-GET /user - - - - ms
-GET /demo 401 12 - 2.249 ms
-GET /demo - - - - ms
-GET /demo - - - - ms
-GET /demo - - - - ms
-GET /demo - - - - ms
-GET /demo 404 143 - 1.674 ms
-GET /user/dangthuyenvuong@gmail.com 200 207 - 52.081 ms
-GET /user/dangthuyenvuong@gmail.com 200 207 - 14.761 ms
-GET /user/dangthuyenvuong@gmail.com 200 207 - 7.254 ms
-GET /user/dangthuyenvuong@gmail.com 200 207 - 10.441 ms
-GET /user/dangthuyenvuong@gmail.com 200 207 - 8.081 ms
-GET /user/dangthuyenvuong@gmail.com 200 207 - 5.559 ms
-GET /user/dangthuyenvuong@gmail.com 200 207 - 5.475 ms
-GET /user/dangthuyenvuong@gmail.com 200 207 - 8.686 ms
-GET /user/dangthuyenvuong@gmail.com 200 207 - 8.807 ms
-GET /user/dangthuyenvuong@gmail.com 200 207 - 5.572 ms
-GET /user/dangthuyenvuong@gmail.com 200 207 - 7.588 ms
-GET /user/dangthuyenvuong@gmail.com 200 207 - 7.025 ms
-GET /user/dangthuyenvuong@gmail.com 200 207 - 8.574 ms
-GET /user/dangthuyenvuong@gmail.com 200 207 - 6.583 ms
-GET /user/dangthuyenvuong@gmail.com 200 207 - 8.468 ms
-GET /user/dangthuyenvuong@gmail.com 200 207 - 8.279 ms
-GET /user/dangthuyenvuong@gmail.com 200 207 - 6.250 ms
-GET /user/dangthuyenvuong@gmail.com 200 207 - 6.983 ms
+POST /user/register 404 153 - 1.842 ms
+POST /user/register 404 153 - 0.867 ms
+POST /user/register 404 153 - 1.140 ms
+POST /user/register 404 153 - 0.322 ms
+POST /user/register 200 248 - 21.280 ms
+POST /user/register 400 119 - 28.947 ms
+POST /user/register 400 119 - 10.199 ms
+POST /user/register 400 36 - 4.724 ms
+POST /user/register 400 36 - 0.885 ms
+POST /user/register 400 119 - 11.355 ms
+POST /user/register 400 36 - 0.628 ms
+POST /user/register 400 90 - 5.243 ms
+POST /user/register 400 90 - 4.007 ms
+POST /user/register 400 90 - 0.486 ms
+POST /user/register 400 90 - 7.090 ms
+POST /user/register 400 90 - 3.226 ms
+POST /user/register 400 36 - 4.518 ms
+POST /user/register 400 90 - 7.607 ms
+POST /user/register 400 90 - 8.796 ms
+POST /user/register 400 90 - 3.356 ms
+POST /user/register 400 90 - 8.933 ms
+POST /user/register 400 90 - 3.215 ms
+POST /user/register 400 90 - 0.732 ms
+POST /user/register 400 90 - 13.794 ms
+POST /user/register 400 119 - 41.135 ms
+POST /user/register 400 119 - 7.584 ms
+POST /user/register 400 119 - 6.917 ms
+POST /user/register 400 119 - 8.120 ms
+POST /user/register 200 248 - 8.576 ms
+POST /user/register 200 202 - 26.041 ms
+GET /user 400 36 - 21.993 ms
+GET /user 200 204 - 20.393 ms
+GET /user 200 45 - 21.800 ms
+GET /user 200 45 - 6.688 ms
+GET /user 200 204 - 32.418 ms
+GET /user 200 204 - 8.796 ms
+GET /user 200 11 - 16.516 ms
+POST /user/register 400 36 - 23.461 ms
+POST /user/register 400 119 - 27.061 ms
+POST /user/register 200 202 - 14.642 ms
+GET /user 200 250 - 19.420 ms
+GET /user 200 250 - 24.960 ms
+POST /user/register 200 248 - 22.883 ms
+GET /user 200 204 - 15.988 ms
+GET /user 200 11 - 14.717 ms
+GET /user 200 11 - 5.109 ms
+POST /user/register 200 202 - 21.718 ms
+GET /user 200 204 - 8.534 ms
+GET /user 200 204 - 6.719 ms
+GET /user 200 204 - 25.598 ms
+GET /user 200 45 - 17.287 ms
+GET /user 200 204 - 17.623 ms
+GET /user 200 91 - 18.814 ms
+GET /user 200 250 - 19.734 ms
+GET /user 200 204 - 18.734 ms
+POST /login 404 145 - 2.716 ms
+POST /login 400 145 - 5.511 ms
+POST /login 400 90 - 1.632 ms
+POST /login 400 86 - 45.603 ms
+POST /login 400 52 - 17.087 ms
+POST /login 400 52 - 20.492 ms
+POST /login 400 36 - 21.105 ms
+POST /login 400 36 - 37.438 ms
+POST /login 400 36 - 21.729 ms
+POST /login 400 36 - 19.445 ms
+POST /login 400 36 - 21.614 ms
+POST /login 400 36 - 22.423 ms
+POST /login 400 36 - 25.716 ms
+POST /login 400 36 - 21.963 ms
+POST /login 400 36 - 21.127 ms
+POST /login 400 36 - 20.651 ms
+POST /login 400 36 - 24.568 ms
+POST /login 400 36 - 21.184 ms
+POST /login 200 13 - 21.821 ms
+POST /login 200 389 - 17.267 ms
+POST /login 200 389 - 10.800 ms
+POST /login 200 389 - 8.402 ms
+POST /login 200 389 - 13.239 ms
+POST /refresh-token - - - - ms
+POST /refresh-token 200 200 - 7.247 ms
+POST /refresh-token 400 92 - 6.268 ms
+POST /refresh-token 200 200 - 5.063 ms
+POST /refresh-token 400 92 - 8.458 ms
+POST /refresh-token 200 389 - 2.678 ms
+POST /refresh-token 200 389 - 1.126 ms
+POST /refresh-token 200 389 - 1.254 ms
+POST /refresh-token 200 389 - 1.609 ms
+POST /refresh-token 200 389 - 1.312 ms
+POST /refresh-token 200 389 - 0.920 ms
+POST /refresh-token 200 389 - 0.915 ms
+POST /refresh-token 200 389 - 1.575 ms
+POST /refresh-token 200 389 - 1.671 ms
+GET /user 200 204 - 28.344 ms
+GET /user 200 204 - 19.024 ms
+GET /user 200 204 - 7.060 ms
+GET /user 200 204 - 21.922 ms
+GET /user 200 204 - 8.247 ms
+GET /user 200 204 - 6.140 ms
+GET /user 403 64 - 3.463 ms
+GET /user 403 101 - 3.900 ms
+GET /user 403 101 - 5.990 ms
+GET /user 403 101 - 1.144 ms
+POST /refresh-token 401 12 - 0.519 ms
+POST /login 401 12 - 0.329 ms
+POST /login 401 12 - 0.403 ms
+POST /login 200 389 - 29.045 ms
+GET /user 200 204 - 12.880 ms
+GET /user 400 36 - 13.725 ms
+GET /user 400 36 - 2.167 ms
+GET /user 403 101 - 10.470 ms
+GET /user 403 101 - 1.193 ms
+POST /refresh-token 200 389 - 3.130 ms
+GET /user 200 202 - 18.076 ms
+GET /user 200 202 - 9.246 ms
+GET /user 200 202 - 5.973 ms
+GET /user 200 202 - 9.818 ms
+GET /user 400 275 - 16.842 ms
+GET /user 200 202 - 23.313 ms
+GET /user 200 202 - 7.546 ms
+GET /user 200 202 - 10.165 ms
+GET /user 200 202 - 6.083 ms
+GET /user 200 202 - 8.531 ms
+GET /user 200 202 - 6.113 ms
+GET /user 200 202 - 4.567 ms
+GET /user 200 202 - 5.806 ms
+GET /user 200 202 - 9.523 ms
+GET /user 200 202 - 6.461 ms
+GET /user 200 202 - 9.978 ms
+GET /user 200 202 - 6.710 ms
+GET /user 200 202 - 8.136 ms
+GET /user 200 202 - 5.558 ms
+GET /user 403 101 - 1.081 ms
+GET /user 403 101 - 0.793 ms
+POST /refresh-token 200 389 - 3.351 ms
+GET /user 200 202 - 14.510 ms
+GET /user 200 202 - 4.988 ms
+GET /user 403 101 - 4.813 ms
+POST /refresh-token 200 389 - 6.722 ms
+POST /refresh-token 200 389 - 3.753 ms
+PATCH /user/dangthuyenvuong@gmail.com 403 64 - 0.694 ms
+PATCH /user/dangthuyenvuong@gmail.com 200 18 - 42.527 ms
+GET /user 200 193 - 17.887 ms
+PATCH /user/dangthuyenvuong@gmail.com 200 18 - 5.989 ms
+GET /user 200 193 - 9.737 ms
+PATCH /user/dangthuyenvuong@gmail.com 200 18 - 11.016 ms
+GET /user 200 214 - 6.893 ms
+PATCH /user/dangthuyenvuong@gmail.com 403 101 - 0.927 ms
+POST /refresh-token 200 389 - 1.640 ms
+PATCH /user/dangthuyenvuong@gmail.com 200 18 - 6.932 ms
+GET /user 200 214 - 7.601 ms

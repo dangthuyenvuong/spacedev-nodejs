@@ -7,17 +7,17 @@ export class HttpResponse {
         res.json({ data: props })
     }
 
-    static error(res, err) {
+    static error(res, err, message = 'Bad request') {
         console.log(err)
         if (err?.constructor?.name === 'MongoServerError') {
             const errorObj = {}
             if (err.code === ModelErrorCode.UNIQUE) {
                 errorObj[Object.keys(err.keyPattern).pop()] = 'Giá trị này đã tồn tại, vui lòng chọn giá trị khác'
             }
-            return res.status(400).json({ error: errorObj, message: 'Validate Error' })
+            return res.status(400).json({ error: errorObj, message })
         }
 
-        return res.status(400).json({ error: err, message: 'Bad request' })
+        return res.status(400).json({ error: err, message })
     }
 
     static delete(res, data) {

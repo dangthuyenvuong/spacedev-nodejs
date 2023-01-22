@@ -1,15 +1,16 @@
 import express from 'express'
 import http from 'http'
 import { config } from 'dotenv'
-import { errorHandler } from './src/middlewares/errorHandler.js'
-import morgan from 'morgan'
+import { errorHandler } from './src/middlewares/errorHandler'
+import morgan, { token } from 'morgan'
 import path from 'path'
 import fs from 'fs'
 import { fileURLToPath } from 'url';
 import rfs from 'rotating-file-stream'
-import { tokenHanller } from './src/middlewares/tokenHanler.js'
-import userRouter from './src/routes/user.js'
-import './src/config/database.js'
+import { tokenHanller } from './src/middlewares/tokenHanler'
+import userRouter from './src/routes/user'
+import './src/config/database'
+import authRouter from './src/routes/auth'
 
 
 // config env
@@ -39,7 +40,6 @@ app.use(express.json())
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms', { stream: accessLogStream }))
 
 
-// app.use(tokenHanller)
 // run server
 httpServer.listen(PORT, () => {
     console.log(`Nodejs server listen on port ${PORT}`)
@@ -51,7 +51,8 @@ app.get('/', (req, res) => {
     res.send('Chào mừng bạn đến với khóa học Nodejs')
 })
 
-app.use('/user', userRouter)
+app.use('/user',tokenHanller, userRouter)
+app.use(authRouter)
 
 // Error Handler
 app.use(errorHandler)

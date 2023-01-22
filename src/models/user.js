@@ -14,12 +14,18 @@ const UserSchema = new Schema({
         //     message: props => `${props.value} không phải là email!`
         // }
     },
+    phone: {
+        type: String,
+    },
     name: {
         type: String,
         required: true,
     },
     avatar: String,
-    password: String,
+    password: {
+        type: String,
+        select: false
+    },
     gender: {
         type: String,
         enum: ['male', 'female'],
@@ -50,6 +56,10 @@ const UserSchema = new Schema({
             return this.findOne({ username: email })
         }
     }
+})
+UserSchema.post('save', function (doc, next) {
+    doc.password = undefined;
+    next()
 })
 
 const User = mongoose.model('users', UserSchema)

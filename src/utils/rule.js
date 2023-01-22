@@ -8,5 +8,18 @@ export const validateNewUser = {
     ],
     name: [
         required('Vui lòng điền họ và tên'),
+    ],
+    password: [
+        required()
+    ]
+}
+
+export const validateLogin = {
+    username: [
+        required(),
+        isEmail()
+    ],
+    password: [
+        required()
     ]
 }
