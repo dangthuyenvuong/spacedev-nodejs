@@ -11,6 +11,8 @@ import { tokenHanller } from './src/middlewares/tokenHanler'
 import userRouter from './src/routes/user'
 import './src/config/database'
 import authRouter from './src/routes/auth'
+import courseRouter from './src/routes/course'
+import reviewRouter from './src/routes/review'
 
 
 // config env
@@ -52,6 +54,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/user',tokenHanller, userRouter)
+app.use('/course',tokenHanller, courseRouter)
+app.use('/review',tokenHanller, reviewRouter)
 app.use(authRouter)
 
 // Error Handler
