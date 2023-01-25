@@ -46,7 +46,7 @@ const create = (task) => {
 }
 
 const deleteById = (id) => {
-    const index = tasks.find(e => e.id === parseInt(id))
+    const index = tasks.findIndex(e => e.id === parseInt(id))
     if (index !== -1) {
         tasks.splice(index, 1)
         writeFile()
