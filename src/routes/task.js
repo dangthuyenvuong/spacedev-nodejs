@@ -31,13 +31,15 @@ taskRouter.put('/:id', (req, res) => {
         res.status(403).send('Task không tồn tại')
     }
 })
-taskRouter.delete('/:id', (req, res) => {
+taskRouter.delete('/:id', (req, res, next) => {
     const { id } = req.params
     const check = Task.deleteById(id)
     if (check) {
         res.sendStatus(204)
     } else {
-        res.status(403).send('Task không tồn tại')
+        // 2 dòng này đều giống nhau chỉ chọn 1 trong 2, error handler sẽ nhận đc tham số error là 1 object kiểu Error
+        // next(new Error('Task không tồn tại'))
+        throw new Error('Task không tồn tại')
     }
 })
 
