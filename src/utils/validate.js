@@ -1,3 +1,4 @@
+import validator from 'validator'
 export const validate = (rules, forms) => {
     const errorObj = {}
     for (let name in rules) {
@@ -20,4 +21,8 @@ export const required = (message = 'Trường này là trường bắt buộc') 
 
 export const pattern = (regexp, message = 'Trường này không đúng định dạng') => (value) => {
     if(!regexp.test(value)) return message
+}
+
+export const isEmail = (message = 'Vui lòng nhập đúng định dạng email') => (value) => {
+    if(!validator.isEmail(value || '')) return message
 }

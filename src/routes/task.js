@@ -20,15 +20,18 @@ taskRouter.post('', validator(createTaskRule), (req, res) => {
     Task.create(task)
     res.json(task)
 })
+
 taskRouter.get('', (req, res) => {
     res.json(Task.find())
 })
+
 taskRouter.get('/:id', (req, res) => {
     const { id } = req.params
     const task = Task.findById(id)
     res.json(task)
 })
-taskRouter.put('/:id', (req, res) => {
+
+taskRouter.put('/:id', validator(createTaskRule), (req, res) => {
     const { id } = req.params
     const { name, categories, members, description, createdAt, startAt, endAt } = req.body
     const task = Task.updateById(id, { name, categories, members, description, createdAt, startAt, endAt })
@@ -38,6 +41,7 @@ taskRouter.put('/:id', (req, res) => {
         res.status(403).send('Task không tồn tại')
     }
 })
+
 taskRouter.delete('/:id', (req, res, next) => {
     const { id } = req.params
     const check = Task.deleteById(id)

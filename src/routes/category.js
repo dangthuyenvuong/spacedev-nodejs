@@ -26,7 +26,7 @@ categoryRouter.post('', validator(createCategoryRule), (req, res) => {
     res.json(category)
 })
 
-categoryRouter.put('/:id', (req, res) => {
+categoryRouter.put('/:id', validator(createCategoryRule), (req, res) => {
     const { id } = req.params
     const { name, color } = req.body
 
