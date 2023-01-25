@@ -36,7 +36,7 @@ const create = (category) => {
 }
 
 const deleteById = (id) => {
-    const index = categories.find(e => e.id === parseInt(id))
+    const index = categories.findIndex(e => e.id === parseInt(id))
     if (index !== -1) {
         categories.splice(index, 1)
         writeFile()

@@ -34,7 +34,7 @@ const create = (member) => {
 }
 
 const deleteById = (id) => {
-    const index = members.find(e => e.id === parseInt(id))
+    const index = members.findIndex(e => e.id === parseInt(id))
     if (index !== -1) {
         members.splice(index, 1)
         writeFile()
