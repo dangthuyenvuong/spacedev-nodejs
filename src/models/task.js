@@ -1,5 +1,6 @@
 import fs from 'fs'
 import Category from './category'
+import Member from './member'
 
 
 let tasks = []
@@ -29,11 +30,16 @@ const find = () => {
 const findById = (id) => {
     const task = tasks.find(e => e.id === parseInt(id))
     if (task) {
+        const taskTemp = { ...task }
         if (Array.isArray(task.categories)) {
-            const taskTemp = { ...task }
             taskTemp.categories = taskTemp.categories.map(Category.findById)
-            return taskTemp
         }
+
+        if(Array.isArray(task.members)) {
+            taskTemp.members = taskTemp.members.map(Member.findById)
+        }
+
+        return taskTemp
     }
 
     return null

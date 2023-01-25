@@ -29,8 +29,8 @@ const findById = (id) => {
     return categories.find(e => e.id === parseInt(id))
 }
 
-const create = (task) => {
-    categories.push(task)
+const create = (category) => {
+    categories.push(category)
     writeFile()
     return true
 }

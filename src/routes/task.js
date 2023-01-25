@@ -5,10 +5,10 @@ const taskRouter = Router()
 
 
 taskRouter.post('', (req, res) => {
-    const { name, categories } = req.body
+    const { name, categories, members, description, createdAt, startAt, endAt } = req.body
     const task = {
         id: Date.now(),
-        name, categories
+        name, categories, members, description, createdAt, startAt, endAt
     }
     Task.create(task)
     res.json(task)
@@ -23,8 +23,8 @@ taskRouter.get('/:id', (req, res) => {
 })
 taskRouter.put('/:id', (req, res) => {
     const { id } = req.params
-    const { name, categories } = req.body
-    const task = Task.updateById(id, { name, categories })
+    const { name, categories, members, description, createdAt, startAt, endAt } = req.body
+    const task = Task.updateById(id, { name, categories, members, description, createdAt, startAt, endAt })
     if (task) {
         res.json(task)
     } else {
