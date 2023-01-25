@@ -1,13 +1,20 @@
 import Category from "../models/category";
 import { Router } from "express";
+import { required, validate } from "../utils/validate";
+import validator from '../middlewares/validator'
 
 const categoryRouter = Router()
+
+const createCategoryRule = {
+    name: [required()],
+    color: [required()]
+}
 
 categoryRouter.get('', (req, res) => {
     res.json(Category.find())
 })
 
-categoryRouter.post('', (req, res) => {
+categoryRouter.post('', validator(createCategoryRule), (req, res) => {
     const { name, color } = req.body
     const category = {
         id: Date.now(),

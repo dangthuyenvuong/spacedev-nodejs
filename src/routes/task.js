@@ -1,14 +1,21 @@
 import { Router } from "express";
 import Task from '../models/task'
+import { required } from "../utils/validate";
+import validator from "../middlewares/validator";
 
 const taskRouter = Router()
 
+const createTaskRule = {
+    name: [required('Vui lòng nhập tên task')],
+    description: [required()],
+}
 
-taskRouter.post('', (req, res) => {
-    const { name, categories, members, description, createdAt, startAt, endAt } = req.body
+taskRouter.post('', validator(createTaskRule), (req, res) => {
+    const { name, categories, members, description, startAt, endAt } = req.body
     const task = {
         id: Date.now(),
-        name, categories, members, description, createdAt, startAt, endAt
+        name, categories, members, description, startAt, endAt,
+        createdAt: Date.now()
     }
     Task.create(task)
     res.json(task)
