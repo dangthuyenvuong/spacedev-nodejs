@@ -1,7 +1,7 @@
 import { Router } from "express";
 import validator from "../middlewares/validator";
 import { isEmail, required } from "../utils/validate";
-import User from '../models/user'
+import { UserController } from "../controllers/user.controller";
 const userRouter = Router()
 
 const registerRule = {
@@ -13,33 +13,8 @@ const registerRule = {
 const updateUserRule = {
 
 }
-userRouter.get('', validator(updateUserRule), async (req, res) => {
-    try {
-        const user = await User.find()
-        res.json(user)
-    } catch (err) {
-        console.log(err)
-        res.status(403).send(err.toString())
-    }
-})
-userRouter.post('/register', validator(registerRule), async (req, res) => {
-    try {
-        const { username, password, name } = req.body
-        const user = await User.create({ username, password, name })
-        res.json(user)
-    } catch (err) {
-        console.log(err)
-        res.status(403).send(err.toString())
-    }
-})
-userRouter.patch('/:id', validator(updateUserRule), async (req, res) => {
-    try {
-        const user = await User.updateOne({ _id: req.params.id }, req.body)
-        res.json(user)
-    } catch (err) {
-        console.log(err)
-        res.status(403).send(err.toString())
-    }
-})
+userRouter.get('', validator(updateUserRule), UserController.getUser)
+userRouter.post('/register', validator(registerRule), UserController.register)
+userRouter.patch('/:id', validator(updateUserRule), UserController.updateProfile)
 
 export default userRouter

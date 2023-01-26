@@ -1,8 +1,8 @@
-import Member from "../models/member";
 import { Router } from "express";
 import { required } from "../utils/validate";
 import validator from "../middlewares/validator";
 import rule from 'validator'
+import { MemberController } from "../controllers/member.controller";
 
 const memberRouter = Router()
 const createMemberRule = {
@@ -16,29 +16,10 @@ const createMemberRule = {
     ]
 }
 
-memberRouter.get('', (req, res) => {
-    res.json(Member.find())
-})
+memberRouter.get('', MemberController.getMember)
 
-memberRouter.post('', validator(createMemberRule), (req, res) => {
-    const { name, avatar, email } = req.body
-    const member = {
-        id: Date.now(),
-        name,
-        avatar,
-        email
-    }
+memberRouter.post('', validator(createMemberRule), MemberController.createMember)
 
-    Member.create(member)
-    res.json(member)
-})
-
-memberRouter.put('/:id', validator(createMemberRule), (req, res) => {
-    const { id } = req.params
-    const { name, avatar, email } = req.body
-
-    const member = Member.updateById(id, { name, avatar, email })
-    res.json(member)
-})
+memberRouter.put('/:id', validator(createMemberRule), MemberController.updateMember)
 
 export default memberRouter
