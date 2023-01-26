@@ -12,3 +12,4 @@ courseRouter.get('/:id', () => { })
 courseRouter.post('', validator(createCourseRule), () => { })
 courseRouter.patch('/:id', validator(updatecourseRule), () => { })
 courseRouter.delete('/:id', () => { })
+export default courseRouter

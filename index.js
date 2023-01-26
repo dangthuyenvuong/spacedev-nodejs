@@ -6,6 +6,9 @@ import categoryRouter from './src/routes/category'
 import memberRouter from './src/routes/member'
 import { logMiddleware } from './src/middlewares/logMiddleware'
 import { errorMiddleware } from './src/middlewares/errorMiddleware'
+import './src/config/database'
+import courseRouter from './src/routes/course'
+import userRouter from './src/routes/user'
 
 // đọc biến môi trường từ .env
 config()
@@ -31,5 +34,7 @@ httpServer.listen(PORT, () => {
 app.use('/task', taskRouter)
 app.use('/category', categoryRouter)
 app.use('/member', memberRouter)
+app.use('/course', courseRouter)
+app.use('/user', userRouter)
 
 app.use(errorMiddleware)
