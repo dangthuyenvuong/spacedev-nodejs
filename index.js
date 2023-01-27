@@ -6,6 +6,10 @@ import categoryRouter from './src/routes/category'
 import memberRouter from './src/routes/member'
 import { logMiddleware } from './src/middlewares/logMiddleware'
 import { errorMiddleware } from './src/middlewares/errorMiddleware'
+import morgan, { token } from 'morgan'
+import { fileURLToPath } from 'url';
+import path from 'path'
+import rfs from 'rotating-file-stream'
 
 // đọc biến môi trường từ .env
 config()
@@ -13,11 +17,21 @@ config()
 const PORT = process.env.PORT || 3000
 const app = express()
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+var accessLogStream = rfs.createStream('access.log', {
+    interval: '1d',
+    path: path.join(__dirname, 'log')
+})
+
 
 // Thay thế cho body-parse dùng để sử dụng req.body
 app.use(express.json())
 
 app.use(logMiddleware)
+
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms', { stream: accessLogStream }))
 
 // Tạo ra một http server
 const httpServer = http.createServer(app)
