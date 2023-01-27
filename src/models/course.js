@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import CollectionNames from '../constants/collection'
 
 const courseSchema = new Schema({
     name: {
@@ -23,6 +24,10 @@ const courseSchema = new Schema({
         type: String,
         enum: ['online', 'ofline']
     },
+    categories: [{
+        type: Schema.Types.ObjectId,
+        ref: CollectionNames.CourseCategory
+    }],
     benefit: [String],
     schedule: {
         type: String,
@@ -37,15 +42,15 @@ const courseSchema = new Schema({
         required: true
     },
     teacher: {
-        type: Schema.Types.ObjectId, ref: 'User'
+        type: Schema.Types.ObjectId, ref: CollectionNames.User
     },
     mentors: [{
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: CollectionNames.User
     }]
 }, {
     timestamps: true,
 })
 
-export const Course = model('courses', courseSchema)
+export const Course = model(CollectionNames.Course, courseSchema)
 export default Course

@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose'
+import CollectionNames from '../constants/collection'
 
 // Bảng mô tả model
 const userSchema = new Schema({
@@ -43,5 +44,5 @@ const userSchema = new Schema({
 })
 
 // users: Tên của collection trong database
-export const User = model('users', userSchema)
+export const User = model(CollectionNames.User, userSchema)
 export default User
