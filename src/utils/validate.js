@@ -16,7 +16,7 @@ export const validate = (rules, forms) => {
 }
 
 export const required = (message = 'Trường này là trường bắt buộc') => (value) => {
-    if (!value?.trim()) return message
+    if (!value || !value?.toString()?.trim()) return message
 }
 
 export const pattern = (regexp, message = 'Trường này không đúng định dạng') => (value) => {

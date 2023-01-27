@@ -16,13 +16,12 @@ const courseSchema = new Schema({
     },
     shortDescription: String,
     longDescription: String,
-    content: [{
-        content: String
-    }],
+    content: [String],
     required: [String],
     type: {
         type: String,
-        enum: ['online', 'ofline']
+        enum: ['online', 'ofline'],
+        default: 'online'
     },
     categories: [{
         type: Schema.Types.ObjectId,

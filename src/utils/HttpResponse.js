@@ -2,8 +2,32 @@ import { ModelErrorCode } from './ModelErrorCode'
 
 export default class HttpResponse {
 
-    static data(res, props) {
-        res.json({ data: props })
+    static async data(res, props) {
+        try {
+            props = await props
+            if (props) {
+                res.json({ data: props })
+            } else {
+                HttpResponse.error(res, undefined, 'Not found')
+            }
+        } catch (err) {
+            HttpResponse.error(res, undefined, 'Not found')
+        }
+    }
+
+    static async paginate(res, paginate) {
+        try {
+            paginate = await paginate
+
+            if (paginate) {
+                res.json(paginate)
+            } else {
+                HttpResponse.error(res, undefined, 'Not found')
+            }
+        } catch (err) {
+            console.log(err)
+            HttpResponse.error(res, undefined, 'Not found')
+        }
     }
 
     static error(res, err, message = 'Bad request') {
@@ -20,19 +44,29 @@ export default class HttpResponse {
         return res.status(400).json({ errors: err, message })
     }
 
-    static delete(res, data) {
-        if (data.deletedCount) {
-            return res.status(204).json({ deletedCount: data.deletedCount })
+    static async delete(res, data) {
+        try {
+            data = await data
+            if (data.deletedCount) {
+                return res.status(204).json({ deletedCount: data.deletedCount })
+            }
+        } catch (err) {
+            return HttpResponse.error(res, undefined, 'Data not exists')
         }
 
-        return res.status(400).json({ error: 1, message: 'Data not exists' })
+        return res.status(400).json({ message: 'Data not exists' })
     }
 
-    static update(res, data) {
-        if (data?.matchedCount) {
-            return res.status(200).json({ updatedCount: data.matchedCount })
+    static async update(res, data) {
+        try {
+            data = await data
+            if (data?.matchedCount) {
+                return res.json({ updatedCount: data.matchedCount })
+            }
+        } catch (err) {
+            HttpResponse.error(res, err)
         }
 
-        return res.status(400).json({ error: 1, message: 'Data not exists' })
+        return res.status(400).json({ message: 'Data not exists' })
     }
 }
