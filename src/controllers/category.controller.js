@@ -1,25 +1,32 @@
-import Category from "../models/category";
+import TaskCategory from "../models/task_category";
+import HttpResponse from "../utils/HttpResponse";
 
 export const CategoryController = {
-    getCategories: (req, res) => {
-        res.json(Category.find())
+    getCategories: async (req, res) => {
+        HttpResponse.data(res, await TaskCategory.find().select('-__v'))
     },
-    createCategory: (req, res) => {
-        const { name, color } = req.body
-        const category = {
-            id: Date.now(),
-            name,
-            color
+    createCategory: async (req, res) => {
+        try {
+            const { name, color } = req.body
+            const category = {
+                name,
+                color
+            }
+
+            HttpResponse.data(res, await TaskCategory.create(category))
+        } catch (err) {
+            HttpResponse.error(res, err)
         }
-    
-        Category.create(category)
-        res.json(category)
     },
-    updateCategory: (req, res) => {
-        const { id } = req.params
-        const { name, color } = req.body
-    
-        const category = Category.updateById(id, { name, color })
-        res.json(category)
+    updateCategory: async (req, res) => {
+        try {
+            const { id } = req.params
+            const { name, color } = req.body
+
+            const category = await TaskCategory.updateOne({ id }, { name, color })
+            HttpResponse.update(res, category)
+        } catch (err) {
+            HttpResponse.error(res, err)
+        }
     }
 }

@@ -1,26 +1,36 @@
 import Member from "../models/member";
+import HttpResponse from "../utils/HttpResponse";
 
 export const MemberController = {
-    getMember: (req, res) => {
-        res.json(Member.find())
-    },
-    createMember: (req, res) => {
-        const { name, avatar, email } = req.body
-        const member = {
-            id: Date.now(),
-            name,
-            avatar,
-            email
+    getMember: async (req, res) => {
+        try {
+            HttpResponse.data(res, await Member.find())
+        } catch (err) {
+            HttpResponse.error(res, err)
         }
+    },
+    createMember: async (req, res) => {
+        try {
+            const { name, avatar, email } = req.body
+            const member = {
+                name,
+                avatar,
+                email
+            }
 
-        Member.create(member)
-        res.json(member)
+            HttpResponse.data(res, await Member.create(member))
+        } catch (err) {
+            HttpResponse.error(res, err)
+        }
     },
     updateMember: (req, res) => {
-        const { id } = req.params
-        const { name, avatar, email } = req.body
+        try {
+            const { id } = req.params
+            const { name, avatar, email } = req.body
 
-        const member = Member.updateById(id, { name, avatar, email })
-        res.json(member)
+            HttpResponse.update(res, Member.updateOne({ id }, { name, avatar, email }))
+        } catch (err) {
+            HttpResponse.error(err)
+        }
     }
 }

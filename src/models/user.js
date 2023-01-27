@@ -4,12 +4,22 @@ import { Schema, model } from 'mongoose'
 const userSchema = new Schema({
     username: {
         type: String,
-        unique: true // Đảm bảo không có user nào trùng trong 1 collection
+        unique: true, // Đảm bảo không có user nào trùng trong 1 collection,
+        set: (v) => v.toLowerCase()
     },
     password: {
-        type: String
+        type: String,
+        select: false,
     },
-    name: String,
+    // name: String,
+    firstName: {
+        type: String,
+        required: true,
+    },
+    lastName: {
+        type: String,
+        required: true
+    },
     avatar: String,
     phone: String,
     gender: {
@@ -17,6 +27,19 @@ const userSchema = new Schema({
         enum: ['male', 'female']
     },
     birthday: Date
+}, {
+    timestamps: true,
+    virtuals: {
+        name: {
+            get() {
+                return this.firstName + ' ' + this.lastName
+            },
+            set(v) {
+                this.firstName = v.substring(0, v.indexOf(' '))
+                this.lastName = v.substring(v.indexOf(' ') + 1)
+            }
+        }
+    }
 })
 
 // users: Tên của collection trong database
