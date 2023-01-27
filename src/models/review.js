@@ -1,14 +1,15 @@
 import { Schema, model } from "mongoose";
+import CollectionNames from "../constants/collection";
 
 const reviewSchema = new Schema({
     courseId: {
         type: Schema.Types.ObjectId,
-        ref: 'courses',
+        ref: CollectionNames.Course,
         required: true
     },
     registerId: {
         type: Schema.Types.ObjectId,
-        ref: 'registers',
+        ref: CollectionNames.Register,
         required: true
     },
     star: {
@@ -21,5 +22,5 @@ const reviewSchema = new Schema({
     }
 }, { timestamps: true })
 
-export const Review = model('reviews', reviewSchema)
+export const Review = model(CollectionNames.Review, reviewSchema)
 export default Review

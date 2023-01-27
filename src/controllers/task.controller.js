@@ -16,7 +16,8 @@ export const TaskController = {
     },
     getTask: async (req, res) => {
         try {
-            HttpResponse.data(res, await Task.findTaskWithRelation())
+            const task = await Task.findOne({})
+            HttpResponse.data(res, await Task.find())
         } catch (err) {
             HttpResponse.error(res, err)
         }
