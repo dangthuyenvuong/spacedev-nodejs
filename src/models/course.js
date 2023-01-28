@@ -46,9 +46,29 @@ const courseSchema = new Schema({
     mentors: [{
         type: Schema.Types.ObjectId,
         ref: CollectionNames.User
-    }]
+    }],
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: CollectionNames.User,
+        // populate: {
+        //     select: 'avatar firstName lastName'
+        // }
+    }
 }, {
     timestamps: true,
+    statics: {
+        checkAuthor: async function (id, authorId) {
+            const course = await this.findById(id)
+            if (course) {
+                if(course.author.equals(authorId)) {
+                    return course
+                }
+                throw new Error('Bạn không có quyền trên khóa học này')
+            } else {
+                throw new Error('Khóa học không tồn tại')
+            }
+        }
+    }
 })
 
 export const Course = model(CollectionNames.Course, courseSchema)

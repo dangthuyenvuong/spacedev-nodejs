@@ -2,6 +2,7 @@ import { Router } from "express";
 import validator from '../middlewares/validator'
 import { CourseController } from "../controllers/course.controller";
 import { required } from "../utils/validate";
+import authGuard from '../middlewares/authGuard'
 
 const courseRouter = Router()
 
@@ -15,11 +16,14 @@ const updatecourseRule = {}
 
 courseRouter.get('', CourseController.getCourse)
 courseRouter.get('/:id', CourseController.getOneCourse)
+courseRouter.post('/register/:id', authGuard, CourseController.register)
 
 
-// Admin
-courseRouter.post('/admin', validator(createCourseRule), CourseController.createCourse)
-courseRouter.patch('/admin/:id', validator(updatecourseRule), CourseController.updateCourse)
-courseRouter.delete('/admin/:id', CourseController.deleteCourse)
+// Author
+courseRouter.post('', authGuard, validator(createCourseRule), CourseController.createCourse)
+courseRouter.patch('/:id', authGuard, validator(updatecourseRule), CourseController.updateCourse)
+courseRouter.delete('/:id', authGuard, CourseController.deleteCourse)
+
+
 
 export default courseRouter

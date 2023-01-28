@@ -41,6 +41,12 @@ export default class HttpResponse {
             return res.status(400).json({ errors: errorObj, message })
         }
 
+        if (err?.constructor?.name === 'CastError') {
+            if (err.kind === 'ObjectId') {
+                return res.status(400).json({ message: 'Dữ liệu không tồn tại' })
+            }
+        }
+
         if (err instanceof Error) {
             return res.status(400).json({ message: err.message })
         }
