@@ -8,10 +8,10 @@ export default class HttpResponse {
             if (props) {
                 res.json({ data: props })
             } else {
-                HttpResponse.error(res, undefined, 'Not found')
+                this.error(res, undefined, 'Not found')
             }
         } catch (err) {
-            HttpResponse.error(res, undefined, 'Not found')
+            this.error(res, undefined, 'Not found')
         }
     }
 
@@ -22,11 +22,11 @@ export default class HttpResponse {
             if (paginate) {
                 res.json(paginate)
             } else {
-                HttpResponse.error(res, undefined, 'Not found')
+                this.error(res, undefined, 'Not found')
             }
         } catch (err) {
             console.log(err)
-            HttpResponse.error(res, undefined, 'Not found')
+            this.error(res, undefined, 'Not found')
         }
     }
 
@@ -41,6 +41,10 @@ export default class HttpResponse {
             return res.status(400).json({ errors: errorObj, message })
         }
 
+        if (err instanceof Error) {
+            return res.status(400).json({ message: err.message })
+        }
+
         return res.status(400).json({ errors: err, message })
     }
 
@@ -51,7 +55,7 @@ export default class HttpResponse {
                 return res.status(204).json({ deletedCount: data.deletedCount })
             }
         } catch (err) {
-            return HttpResponse.error(res, undefined, 'Data not exists')
+            return this.error(res, undefined, 'Data not exists')
         }
 
         return res.status(400).json({ message: 'Data not exists' })
@@ -64,9 +68,13 @@ export default class HttpResponse {
                 return res.json({ updatedCount: data.matchedCount })
             }
         } catch (err) {
-            HttpResponse.error(res, err)
+            console.log(err)
+            this.error(res, err)
         }
 
         return res.status(400).json({ message: 'Data not exists' })
+    }
+    static async message(res, message) {
+        res.json({ message })
     }
 }

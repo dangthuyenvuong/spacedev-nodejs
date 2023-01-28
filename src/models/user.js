@@ -1,15 +1,17 @@
 import { Schema, model } from 'mongoose'
 import CollectionNames from '../constants/collection'
+import md5 from 'md5'
 
 // Bảng mô tả model
 const userSchema = new Schema({
     username: {
         type: String,
         unique: true, // Đảm bảo không có user nào trùng trong 1 collection,
-        set: (v) => v.toLowerCase()
+        set: (v) => v.toLowerCase(),
+        immutable: true
     },
     password: {
-        type: String,
+        type: Object,
         select: false,
     },
     // name: String,

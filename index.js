@@ -13,6 +13,7 @@ import morgan, { token } from 'morgan'
 import { fileURLToPath } from 'url';
 import path from 'path'
 import rfs from 'rotating-file-stream'
+import authRouter from './src/routes/auth'
 
 // đọc biến môi trường từ .env
 config()
@@ -50,5 +51,6 @@ app.use('/category', categoryRouter)
 app.use('/member', memberRouter)
 app.use('/course', courseRouter)
 app.use('/user', userRouter)
+app.use(authRouter)
 
 app.use(errorMiddleware)
