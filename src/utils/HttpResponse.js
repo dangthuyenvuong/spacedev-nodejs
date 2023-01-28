@@ -11,6 +11,7 @@ export default class HttpResponse {
                 this.error(res, undefined, 'Not found')
             }
         } catch (err) {
+            console.log(err)
             this.error(res, undefined, 'Not found')
         }
     }

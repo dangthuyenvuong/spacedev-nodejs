@@ -52,3 +52,7 @@ export const minMax = (min, max, message) => (value) => {
 
     }
 }
+
+export const minLength = (min, message = `Xin vui nhập ít nhất ${min} ký tự`) => (value) => {
+    if(value && value.length < min) return message
+} 

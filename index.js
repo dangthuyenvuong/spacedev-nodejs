@@ -15,6 +15,7 @@ import courseRouter from './src/routes/course'
 import memberRouter from './src/routes/member'
 import taskRouter from './src/routes/task'
 import userRouter from './src/routes/user'
+import reviewRouter from './src/routes/review'
 
 // đọc biến môi trường từ .env
 config()
@@ -52,6 +53,7 @@ app.use('/category', categoryRouter)
 app.use('/member', memberRouter)
 app.use('/course', courseRouter)
 app.use('/user', userRouter)
+app.use('/review', reviewRouter)
 app.use(authRouter)
 
 app.use(errorMiddleware)

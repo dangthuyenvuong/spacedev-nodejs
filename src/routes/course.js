@@ -14,6 +14,8 @@ const createCourseRule = {
 
 const updatecourseRule = {}
 
+
+courseRouter.get('/enrollments', authGuard, CourseController.enrollments)
 courseRouter.get('', CourseController.getCourse)
 courseRouter.get('/:id', CourseController.getOneCourse)
 courseRouter.post('/register/:id', authGuard, CourseController.register)

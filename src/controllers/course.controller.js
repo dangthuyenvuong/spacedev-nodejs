@@ -3,18 +3,14 @@ import Course from '../models/course'
 import Register from '../models/register'
 export const CourseController = {
     getCourse: async (req, res) => {
-        let { name, fields, sort = '_id.desc', includes = '', limit = 10, page = 1, ...filter } = req.query
-        const query = { ...filter }
-        if (name) {
-            query.name = {
-                $regex: name,
-                $options: 'i'
-            }
-        }
+        let { name, ...query } = req.query
 
         HttpResponse.paginate(
             res,
-            Course.find(query).select(fields).sort(sort).populate(includes).paginate(page, limit),
+            Course.findAndPaginate({
+                ...query,
+                search: { name }
+            }),
         )
     },
     getOneCourse: (req, res) => {
@@ -45,7 +41,7 @@ export const CourseController = {
     },
     register: async (req, res) => {
         try {
-            const checkRegister = await Register.findOne({ courseId: req.params.id, userId: req.user._id })
+            const checkRegister = await Register.findOne({ course: req.params.id, user: req.user._id })
             if (checkRegister) {
                 throw new Error('Tài khoản này đã đăng ký khóa học này')
             }
@@ -56,8 +52,8 @@ export const CourseController = {
                     throw new Error('Bạn không thể tự đăng ký chính khóa học của mình')
                 }
                 await Register.create({
-                    courseId: req.params.id,
-                    userId: req.user._id,
+                    course: req.params.id,
+                    user: req.user._id,
                     price: course.price,
                 })
 
@@ -69,6 +65,17 @@ export const CourseController = {
         } catch (err) {
             HttpResponse.error(res, err)
         }
+    },
+    enrollments: async (req, res) => {
+        let { name, ...query } = req.query
+
+        HttpResponse.paginate(
+            res,
+            Register.findAndPaginate({
+                ...query,
+                search: { name }
+            }),
+        )
     }
 }
 

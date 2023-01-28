@@ -2,21 +2,28 @@ import { Schema, model } from "mongoose";
 import CollectionNames from "../constants/collection";
 
 const registerSchema = new Schema({
-    courseId: {
+    course: {
         type: Schema.Types.ObjectId,
         ref: CollectionNames.Course,
-        required: true
+        required: true,
     },
-    userId: {
+    user: {
         type: Schema.Types.ObjectId,
         ref: CollectionNames.User,
-        required: true
+        required: true,
     },
     price: {
         type: Number,
         required: true
+    },
+    review: {
+        type: Schema.Types.ObjectId,
+        ref: CollectionNames.Review,
+        default: null
     }
-}, { timestamps: true })
+}, {
+    timestamps: true,
+})
 
 export const Register = model(CollectionNames.Register, registerSchema)
 export default Register

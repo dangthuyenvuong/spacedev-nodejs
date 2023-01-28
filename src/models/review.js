@@ -7,6 +7,11 @@ const reviewSchema = new Schema({
         ref: CollectionNames.Course,
         required: true
     },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: CollectionNames.User,
+        required: true
+    },
     registerId: {
         type: Schema.Types.ObjectId,
         ref: CollectionNames.Register,
