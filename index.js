@@ -16,6 +16,8 @@ import memberRouter from './src/routes/member'
 import taskRouter from './src/routes/task'
 import userRouter from './src/routes/user'
 import reviewRouter from './src/routes/review'
+import fileRouter from './src/routes/file'
+
 
 // đọc biến môi trường từ .env
 config()
@@ -28,12 +30,13 @@ const __dirname = path.dirname(__filename);
 
 var accessLogStream = rfs.createStream('access.log', {
     interval: '1d',
-    path: path.join(__dirname, 'log')
+    path: path.join(__dirname, './resources/log')
 })
 
 
 // Thay thế cho body-parse dùng để sử dụng req.body
 app.use(express.json())
+app.use('/uploads', express.static('./resources/uploads'))
 
 app.use(logMiddleware)
 
@@ -54,6 +57,7 @@ app.use('/member', memberRouter)
 app.use('/course', courseRouter)
 app.use('/user', userRouter)
 app.use('/review', reviewRouter)
+app.use('/file', fileRouter)
 app.use(authRouter)
 
 app.use(errorMiddleware)
