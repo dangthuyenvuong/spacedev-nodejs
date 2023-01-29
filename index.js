@@ -17,6 +17,7 @@ import taskRouter from './src/routes/task'
 import userRouter from './src/routes/user'
 import reviewRouter from './src/routes/review'
 import fileRouter from './src/routes/file'
+import './src/utils/mail'
 
 
 // đọc biến môi trường từ .env
@@ -59,5 +60,6 @@ app.use('/user', userRouter)
 app.use('/review', reviewRouter)
 app.use('/file', fileRouter)
 app.use(authRouter)
+
 
 app.use(errorMiddleware)

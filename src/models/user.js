@@ -29,7 +29,15 @@ const userSchema = new Schema({
         type: String,
         enum: ['male', 'female']
     },
-    birthday: Date
+    birthday: Date,
+    codeConfirm: {
+        type: String,
+        select: false
+    },
+    confirmRedirect: {
+        type: String,
+        select: false
+    }
 }, {
     timestamps: true,
     virtuals: {
