@@ -7,7 +7,7 @@ const fileRouter = Router()
 fileRouter.post('/upload', uploadFile.array('files'), (req, res) => {
     if (req.files?.length) {
         HttpResponse.data(res, req.files.map(e => ({
-            path: e.path.replace('resources\\',''),
+            path: `${req.protocol}://${req.get('host')}/` + e.path.replace('resources\\','').replaceAll('\\','/'),
             size: e.size,
             mimetype: e.mimetype
         })))
