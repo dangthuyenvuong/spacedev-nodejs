@@ -23,4 +23,7 @@ userRouter.get('', authGuard, validator(updateUserRule), UserController.getUser)
 userRouter.post('/register', validator(registerRule), UserController.register)
 userRouter.patch('', authGuard, validator(updateUserRule), UserController.updateProfile)
 
+userRouter.get('/register-confirm/:code',  UserController.registerConfirm)
+
+
 export default userRouter

@@ -18,11 +18,12 @@ export const UserController = {
         }
     },
     register: async (req, res) => {
+        console.log(req.headers)
         try {
-            const { username, password, name } = req.body
+            const { username, password, name, redirect } = req.body
 
             const codeConfirm = randomBytes(64).toString('hex')
-            const urlConfirm = `${req.protocol}://${req.get('host')}/register-confirm/${codeConfirm}`
+            const urlConfirm = `${req.protocol}://${req.get('host')}/user/register-confirm/${codeConfirm}`
 
             mail({
                 to: username,
@@ -39,7 +40,7 @@ export const UserController = {
                 password: md5(password),
                 name,
                 codeConfirm,
-                confirmRedirect: req.get('origin') + `/signin`
+                confirmRedirect: `${redirect || req.get('origin')}?code=${codeConfirm}`
             })
             HttpResponse.message(res, 'Tạo tài khoản thành công')
 
@@ -53,5 +54,24 @@ export const UserController = {
             { _id: req.user._id },
             { name, avatar, phone, gender, birthday }, { new: true }
         ))
+    },
+    registerConfirm: async (req, res) => {
+        try {
+            const { code } = req.params
+            const user = await User.findOne({
+                codeConfirm: code
+            }).select('confirmRedirect')
+
+            if(user) {
+                user.emailConfirm = true
+                user.save()
+                return res.redirect(user.confirmRedirect)
+            }
+
+            throw new Error('Đã có lỗi xẩy ra')
+
+        } catch (err) {
+            HttpResponse.error(res, err)
+        }
     }
 }

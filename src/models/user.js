@@ -37,6 +37,11 @@ const userSchema = new Schema({
     confirmRedirect: {
         type: String,
         select: false
+    },
+    emailConfirm: {
+        type: Boolean,
+        default: false,
+        select: false,
     }
 }, {
     timestamps: true,

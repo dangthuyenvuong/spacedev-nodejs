@@ -21,7 +21,12 @@ const refreshTokenRule = {
     refreshToken: [required()]
 }
 
+const loginByCodeRule = {
+    code: [required()]
+}
+
 authRouter.post('/login', validator(loginRule), AuthController.login)
 authRouter.post('/refresh-token', validator(refreshTokenRule), AuthController.refreshToken)
+authRouter.post('/login-by-code',validator(loginByCodeRule), AuthController.loginByCode)
 
 export default authRouter

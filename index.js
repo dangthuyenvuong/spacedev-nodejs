@@ -17,7 +17,7 @@ import taskRouter from './src/routes/task'
 import userRouter from './src/routes/user'
 import reviewRouter from './src/routes/review'
 import fileRouter from './src/routes/file'
-import './src/utils/mail'
+import cors from 'cors'
 
 
 // đọc biến môi trường từ .env
@@ -39,9 +39,19 @@ var accessLogStream = rfs.createStream('access.log', {
 app.use(express.json())
 app.use('/uploads', express.static('./resources/uploads'))
 
+app.use(cors({
+    methods: '*',
+    origin: [
+        /localhost/
+    ]
+}))
+
 app.use(logMiddleware)
 
 app.use(morgan(':method :url :status :req[content-length] - :response-time ms', { stream: accessLogStream }))
+
+
+
 
 // Tạo ra một http server
 const httpServer = http.createServer(app)
@@ -61,5 +71,9 @@ app.use('/review', reviewRouter)
 app.use('/file', fileRouter)
 app.use(authRouter)
 
+app.get('/test', (req, res) => {
+    console.log(req.originalUrl)
+    res.json({ origin: true })
+})
 
 app.use(errorMiddleware)
