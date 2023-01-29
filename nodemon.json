@@ -2,7 +2,7 @@
     "ignore": [".git", "node_modules/**/node_modules"],
     "include": [".env"],
     "execMap": {
-      "js": "node --experimental-modules --es-module-specifier-resolution=node"
+      "js": "node --experimental-modules --inspect --es-module-specifier-resolution=node"
     },
     "env": {
       "NODE_ENV": "development"

@@ -56,6 +56,7 @@ export default class HttpResponse {
     }
 
     static async delete(res, data) {
+
         try {
             data = await data
             if (data.deletedCount) {

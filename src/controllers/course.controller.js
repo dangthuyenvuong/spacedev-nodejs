@@ -34,7 +34,7 @@ export const CourseController = {
     deleteCourse: async (req, res) => {
         try {
             await Course.checkAuthor(req.params.id, req.user._id)
-            HttpResponse.delete(res, Course.deleteOne({ _id: req.params.id }))
+            HttpResponse.delete(res, Course.softDelete({ _id: req.params.id }))
         } catch (err) {
             HttpResponse.error(res, err)
         }
@@ -73,7 +73,8 @@ export const CourseController = {
             res,
             Register.findAndPaginate({
                 ...query,
-                search: { name }
+                search: { name },
+                user: req.user._id
             }),
         )
     }
