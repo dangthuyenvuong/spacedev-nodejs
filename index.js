@@ -22,6 +22,8 @@ import './src/utils/morgan'
 import { jsonBody } from './src/utils/jsonBody'
 import reportRouter from './src/routes/report'
 import { cacheGetMethod } from './src/utils/cache'
+import './src/config/redis'
+import { expressAdapter } from './src/config/redis'
 
 
 // đọc biến môi trường từ .env
@@ -37,7 +39,6 @@ var accessLogStream = rfs.createStream('access.log', {
     interval: '1d',
     path: path.join(__dirname, './resources/log')
 })
-
 
 // Thay thế cho body-parse dùng để sử dụng req.body
 app.use('/uploads', express.static('./resources/uploads'))
@@ -55,6 +56,7 @@ app.use(jsonBody);
 app.use(logMiddleware)
 app.use(cacheGetMethod({
     cacheTime: 10,
+    adapter: expressAdapter,
     noCache: [
         // '/review'
     ]

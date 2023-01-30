@@ -25,7 +25,7 @@ mongoose.plugin(softDelete)
 mongoose.plugin((schema) => {
     schema.virtual('id').get(function () {
         return this._id
-    }).set(function() {
+    }).set(function () {
         this.id = this._id
     })
 })

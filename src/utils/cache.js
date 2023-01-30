@@ -1,28 +1,37 @@
 const memorize = {}
 
-export const cacheGetMethod = (options = { cacheTime: 10, noCache: [] }) => {
-    let { noCache = [] } = options
+const cacheAdapter = {
+    set: (name, value, cacheTime) => {
+        memorize[name] = {
+            data: value,
+            iat: Date.now() + cacheTime * 1000
+        };
+    },
+    get: (name) => {
+        if (memorize[name] && memorize[name].iat > Date.now()) {
+            return memorize[name].data
+        }
+    }
+}
 
+export const cacheGetMethod = (options = { cacheTime: 10, noCache: [], adapter: cacheAdapter }) => {
+    let { noCache = [], adapter = cacheAdapter, cacheTime = 10 } = options
 
-    return (req, res, next) => {
+    return async (req, res, next) => {
 
-        for(let url of noCache) {
-            if(req.originalUrl.startsWith(url)) return next()
+        for (let url of noCache) {
+            if (req.originalUrl.startsWith(url)) return next()
         }
 
-        if (req.method === 'GET' && memorize[req.originalUrl]) {
-            if (memorize[req.originalUrl].iat > Date.now()) {
-                res.json(memorize[req.originalUrl].data)
-                return
-            }
+        let data = await adapter.get(req.originalUrl)
+
+        if (req.method === 'GET' && data) {
+            return res.json(data)
         }
 
         res.on('finish', () => {
-            if (!req.noCache && req.method === 'GET' && res.statusCode) {
-                memorize[req.originalUrl] = {
-                    data: res.jsonBody,
-                    iat: Date.now() + options.cacheTime * 1000
-                };
+            if (!req.noCache && req.method === 'GET' && res.statusCode && !req.user) {
+                adapter.set(req.originalUrl, res.jsonBody, cacheTime)
             }
         })
 
