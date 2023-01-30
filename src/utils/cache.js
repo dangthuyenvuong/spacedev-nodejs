@@ -39,8 +39,6 @@ export const cacheGetMethod = (options = { cacheTime: 10, noCache: [], adapter: 
     }
 }
 
-
-
 /**
  * 60000 request/m
  * 
@@ -48,6 +46,6 @@ export const cacheGetMethod = (options = { cacheTime: 10, noCache: [], adapter: 
  * 
  * 1000 / 10 course -> 100 request/s
  * 
- * 10*100 -> 1000 - 999
+ * 10*100 -> 1000 - 999: cache hit ratio
  * 
  */
