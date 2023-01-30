@@ -23,7 +23,8 @@ import { jsonBody } from './src/utils/jsonBody'
 import reportRouter from './src/routes/report'
 import { cacheGetMethod } from './src/utils/cache'
 import './src/config/redis'
-import { expressAdapter } from './src/config/redis'
+import { cache } from './src/config/redis'
+import { delay } from './src/utils/delay'
 
 
 // đọc biến môi trường từ .env
@@ -41,6 +42,7 @@ var accessLogStream = rfs.createStream('access.log', {
 })
 
 // Thay thế cho body-parse dùng để sử dụng req.body
+
 app.use('/uploads', express.static('./resources/uploads'))
 app.use(express.json())
 
@@ -56,7 +58,7 @@ app.use(jsonBody);
 app.use(logMiddleware)
 app.use(cacheGetMethod({
     cacheTime: 10,
-    adapter: expressAdapter,
+    adapter: cache,
     noCache: [
         // '/review'
     ]
@@ -92,9 +94,20 @@ app.use('/file', fileRouter)
 app.use('/report', reportRouter)
 app.use(authRouter)
 
-app.get('/test', (req, res) => {
-    console.log(req.originalUrl)
-    res.json({ origin: true })
+app.get('/test', async (req, res) => {
+    
+    try {
+        let data = await cache.get('var', 10, async () => {
+            let sum = 0
+            for (let i = 0; i < 1_000_000_000; i++) {
+                sum += i
+            }
+            return sum
+        })
+        res.json({ origin: data })
+    } catch (err) {
+        console.log(err)
+    }
 })
 
 app.use(errorMiddleware)

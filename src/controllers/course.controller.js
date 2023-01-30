@@ -2,6 +2,7 @@ import Course from '../models/course'
 import Register from '../models/register'
 import HttpResponse from "../utils/HttpResponse"
 import { createController } from "../utils/createController"
+import { delay } from '../utils/delay'
 export const CourseController = createController({
     getCourse: async (req, res) => {
         let { name, ...query } = req.query
@@ -52,6 +53,7 @@ export const CourseController = createController({
         throw new Error('Khóa học không tồn tại')
     },
     enrollments: async (req, res) => {
+
         let { name, ...query } = req.query
 
         return Register.findAndPaginate({

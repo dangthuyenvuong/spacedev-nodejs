@@ -16,17 +16,24 @@ client.connect();
 // console.log('aaaaaaaa')
 export default client
 
-export const expressAdapter = {
-    set: async (name, value, cacheTime) => {
+export const cache = {
+    set: async function (name, value, cacheTime) {
         return client.set(name, JSON.stringify(value), { EX: cacheTime })
     },
-    get: async (name) => {
+    get: async function (name, cacheTime, callback) {
         let data = await client.get(name)
-        try {
-            if(data) return JSON.parse(data)
-        }catch(err) {
-            return null
-        }
-    }
-}
 
+        if (data) {
+            try {
+                data = JSON.parse(data)
+            } catch (err) {
+
+            }
+        } else if (callback) {
+            data = await callback()
+            this.set(name, data, cacheTime)
+        }
+
+        return data
+    },
+}

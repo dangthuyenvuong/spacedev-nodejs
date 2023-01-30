@@ -3,6 +3,7 @@ import validator from '../middlewares/validator'
 import { CourseController } from "../controllers/course.controller";
 import { required } from "../utils/validate";
 import authGuard from '../middlewares/authGuard'
+import { cacheByUser } from "../utils/cache";
 
 const courseRouter = Router()
 
@@ -15,7 +16,7 @@ const createCourseRule = {
 const updatecourseRule = {}
 
 
-courseRouter.get('/enrollments', authGuard, CourseController.enrollments)
+courseRouter.get('/enrollments', authGuard, cacheByUser(10), CourseController.enrollments)
 courseRouter.get('', CourseController.getCourse)
 courseRouter.get('/:id', CourseController.getOneCourse)
 courseRouter.post('/register/:id', authGuard, CourseController.register)

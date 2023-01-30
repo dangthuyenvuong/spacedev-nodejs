@@ -14,8 +14,12 @@ const cacheAdapter = {
     }
 }
 
+let mainCacheApdater
+
 export const cacheGetMethod = (options = { cacheTime: 10, noCache: [], adapter: cacheAdapter }) => {
     let { noCache = [], adapter = cacheAdapter, cacheTime = 10 } = options
+
+    mainCacheApdater = adapter
 
     return async (req, res, next) => {
 
@@ -30,13 +34,32 @@ export const cacheGetMethod = (options = { cacheTime: 10, noCache: [], adapter: 
         }
 
         res.on('finish', () => {
-            if (!req.noCache && req.method === 'GET' && res.statusCode && !req.user) {
+            if (!req.noCache && req.method === 'GET' && res.statusCode === 200 && !req.user) {
                 adapter.set(req.originalUrl, res.jsonBody, cacheTime)
             }
         })
 
         next()
     }
+}
+
+
+export const cacheByUser = (cacheTime) => async (req, res, next) => {
+
+    const key = `${req.user._id}${req.originalUrl}`
+    let data = await mainCacheApdater.get(key)
+
+    if (req.method === 'GET' && data) {
+        return res.json(data)
+    }
+
+    res.on('finish', () => {
+        if (!req.noCache && res.statusCode === 200) {
+            mainCacheApdater.set(key, res.jsonBody, cacheTime)
+        }
+    })
+
+    next()
 }
 
 /**
