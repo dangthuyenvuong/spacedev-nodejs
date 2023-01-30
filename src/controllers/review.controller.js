@@ -4,16 +4,20 @@ import HttpResponse from "../utils/HttpResponse"
 
 export const ReviewController = {
     getReview: (req, res) => {
-        HttpResponse.data(res,
+        const { type } = req.query
+        if (type === 'top_review') {
+
+        }
+        HttpResponse.paginate(res,
             Review.findAndPaginate({
                 courseId: req.params.id,
-                ...req.query
+                ...req.query,
             })
         )
     },
     newReview: async (req, res) => {
         try {
-            const { star, content } = req.body
+            const { star, content, tags } = req.body
 
             // Kiểm tra thông tin register
             const register = await Register.findOne({ course: req.params.id, user: req.user._id })
@@ -26,13 +30,26 @@ export const ReviewController = {
                 star, content,
                 courseId: register.course,
                 registerId: register._id,
-                user: req.user._id
+                user: req.user._id,
+                tags
             })
 
             // Cập nhật lại thông tin review cho register
             register.review = review._id
             await register.save()
 
+            HttpResponse.data(res, review)
+        } catch (err) {
+            HttpResponse.error(res, err)
+        }
+    },
+    report: async (req, res) => {
+        try {
+            const { content } = req.body
+            const { id } = req.params
+            const review = await Review.findByIdAndUpdate(id, {
+                reportContent: content,
+            }, { new: true })
             HttpResponse.data(res, review)
         } catch (err) {
             HttpResponse.error(res, err)

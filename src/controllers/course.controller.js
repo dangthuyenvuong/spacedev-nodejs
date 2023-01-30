@@ -77,6 +77,16 @@ export const CourseController = {
                 user: req.user._id
             }),
         )
+    },
+    related: async (req, res) => {
+        const { id } = req.params
+        HttpResponse.paginate(res,
+            Course.findAndPaginate({
+                ...req.query,
+                _id: {
+                    $ne: id
+                }
+            }))
     }
 }
 

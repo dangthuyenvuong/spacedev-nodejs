@@ -1,9 +1,13 @@
 function overideMethodGet(next) {
-    this.where({
-        $nor: [
-            { deletedAt: { $type: 'date' } }
-        ]
-    })
+    if(this._conditions?.deleted) {
+        delete this._conditions.deleted
+    }else {
+        this.where({
+            $nor: [
+                { deletedAt: { $type: 'date' } }
+            ]
+        })
+    }
     next()
 }
 

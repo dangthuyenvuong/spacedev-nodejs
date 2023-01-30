@@ -19,13 +19,12 @@ courseRouter.get('/enrollments', authGuard, CourseController.enrollments)
 courseRouter.get('', CourseController.getCourse)
 courseRouter.get('/:id', CourseController.getOneCourse)
 courseRouter.post('/register/:id', authGuard, CourseController.register)
-
+courseRouter.get('/related/:id', CourseController.related)
 
 // Author
 courseRouter.post('', authGuard, validator(createCourseRule), CourseController.createCourse)
 courseRouter.patch('/:id', authGuard, validator(updatecourseRule), CourseController.updateCourse)
 courseRouter.delete('/:id', authGuard, CourseController.deleteCourse)
-
 
 
 export default courseRouter

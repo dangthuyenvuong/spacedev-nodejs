@@ -20,6 +20,7 @@ import fileRouter from './src/routes/file'
 import cors from 'cors'
 import './src/utils/morgan'
 import { getJson } from './src/utils/morgan'
+import reportRouter from './src/routes/report'
 
 
 // đọc biến môi trường từ .env
@@ -79,6 +80,7 @@ app.use('/course', courseRouter)
 app.use('/user', userRouter)
 app.use('/review', reviewRouter)
 app.use('/file', fileRouter)
+app.use('/report', reportRouter)
 app.use(authRouter)
 
 app.get('/test', (req, res) => {

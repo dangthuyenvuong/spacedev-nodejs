@@ -10,7 +10,12 @@ const reviewRule = {
     content: [required(), minLength(20)]
 }
 
+const reviewReportRule = {
+    content: [required()]
+}
+
 reviewRouter.post('/:id', authGuard, validator(reviewRule), ReviewController.newReview)
 reviewRouter.get('/:id', ReviewController.getReview)
+reviewRouter.post('/report/:id', authGuard, validator(reviewReportRule),ReviewController.report)
 
 export default reviewRouter

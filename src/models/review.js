@@ -24,7 +24,12 @@ const reviewSchema = new Schema({
     content: {
         type: String,
         required: true
-    }
+    },
+    reportContent: {
+        type: String
+    },
+    tags: [String],
+    reportAt: Date
 }, { timestamps: true })
 
 export const Review = model(CollectionNames.Review, reviewSchema)

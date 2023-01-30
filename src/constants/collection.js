@@ -4,6 +4,7 @@ const CollectionNames = {
     Review: 'reviews',
     User: 'users',
     Register: 'registers',
+    Report: 'report'
 }
 
 export default CollectionNames
