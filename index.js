@@ -19,8 +19,9 @@ import reviewRouter from './src/routes/review'
 import fileRouter from './src/routes/file'
 import cors from 'cors'
 import './src/utils/morgan'
-import { getJson } from './src/utils/morgan'
+import { jsonBody } from './src/utils/jsonBody'
 import reportRouter from './src/routes/report'
+import { cacheGetMethod } from './src/utils/cache'
 
 
 // đọc biến môi trường từ .env
@@ -49,9 +50,15 @@ app.use(cors({
     ]
 }))
 
-app.use(getJson);
+app.use(jsonBody);
 
 app.use(logMiddleware)
+app.use(cacheGetMethod({
+    cacheTime: 10,
+    noCache: [
+        // '/review'
+    ]
+}))
 
 app.use(morgan(`
 [:date[iso]] :remote-addr 

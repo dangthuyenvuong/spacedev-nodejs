@@ -1,10 +1,10 @@
 import Register from "../models/register"
 import Review from '../models/review'
 import HttpResponse from "../utils/HttpResponse"
+import { createController } from "../utils/createController"
 
-export const ReviewController = {
+export const ReviewController = createController({
     getReview: (req, res) => {
-        const { type } = req.query
         return Review.findAndPaginate({
             courseId: req.params.id,
             ...req.query,
@@ -41,4 +41,4 @@ export const ReviewController = {
             reportContent: content,
         }, { new: true })
     }
-}
+})
