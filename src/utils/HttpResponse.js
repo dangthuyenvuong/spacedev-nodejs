@@ -85,4 +85,44 @@ export default class HttpResponse {
     static async message(res, message) {
         res.json({ message })
     }
+
+
+    static async response(res, data) {
+        try {
+            data = await data
+            if (data.matchedCount) {
+                res.json({ updatedCount: data.matchedCount })
+            } else if (data.deletedCount) {
+                res.json({ deletedCount: data.deletedCount })
+            } else if (data.paginate) {
+                res.json(data)
+            } else if (data instanceof HttpResponse) {
+                if (data.status) res.status(data.status)
+                res.json(data.toJSON())
+            } else {
+                res.json({ data })
+            }
+        } catch (err) {
+            throw err
+        }
+    }
+
+
+    constructor(options = { status, message, data }) {
+        if (typeof options === 'string') {
+            this.message = options
+        } else {
+            this.status = options.status
+            this.message = options.message
+            this.data = options.data
+        }
+    }
+
+    toJSON() {
+        return {
+            status: this.status,
+            message: this.message,
+            data: this.data
+        }
+    }
 }

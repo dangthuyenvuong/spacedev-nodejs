@@ -4,30 +4,22 @@ import HttpResponse from "../utils/HttpResponse";
 export const CategoryController = {
     getCategories: async (req, res) => {
         const { name, ...filter } = req.query
-        HttpResponse.data(res, await TaskCategory.findAndPaginate({ ...filter, search: { name } }))
+        return TaskCategory.findAndPaginate({ ...filter, search: { name } })
     },
     createCategory: async (req, res) => {
-        try {
-            const { name, color } = req.body
-            const category = {
-                name,
-                color
-            }
-
-            HttpResponse.data(res, await TaskCategory.create(category))
-        } catch (err) {
-            HttpResponse.error(res, err)
+        const { name, color } = req.body
+        const category = {
+            name,
+            color
         }
+
+        return TaskCategory.create(category)
     },
     updateCategory: async (req, res) => {
-        try {
-            const { id } = req.params
-            const { name, color } = req.body
+        const { id } = req.params
+        const { name, color } = req.body
 
-            const category = await TaskCategory.updateOne({ id }, { name, color })
-            HttpResponse.update(res, category)
-        } catch (err) {
-            HttpResponse.error(res, err)
-        }
+        return TaskCategory.updateOne({ id }, { name, color })
+        
     }
 }

@@ -3,22 +3,16 @@ import Report from '../models/report'
 
 export const ReportController = {
     report: async (req, res) => {
-        try {
-            const { content, review } = req.body
-            HttpResponse.data(res, Report.create({
-                content,
-                review
-            }))
-        } catch (err) {
-            HttpResponse.error(res, err)
-        }
+        const { content, review } = req.body
+        return Report.create({
+            content,
+            review
+        })
     },
     getReport: async (req, res) => {
-        HttpResponse.paginate(res, 
-            Report.findAndPaginate({
-                ...req.query,
-            })    
-        )
+        return Report.findAndPaginate({
+            ...req.query,
+        })
     }
 }
 

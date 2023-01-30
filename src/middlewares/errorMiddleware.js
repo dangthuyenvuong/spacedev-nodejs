@@ -1,7 +1,6 @@
 import { MulterError } from "multer"
 
 export const errorMiddleware = (error, req, res, next) => {
-    console.log(errr)
     if (error) {
         if (error instanceof MulterError) {
             return res.status(403).json({ error })
