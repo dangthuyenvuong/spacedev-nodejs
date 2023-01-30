@@ -40,7 +40,6 @@ export const paginate = function (schema, options) {
             }
         }
 
-
         return this.find(query).select(fields).sort(sort).populate(includes).paginate(page, limit)
     }
 
@@ -50,7 +49,7 @@ export const paginate = function (schema, options) {
         if (args.length >= 2) {
             return originalPopulate.call(this, ...args)
         }
-        if (args[0]) {
+        if (typeof args[0] === 'string') {
             let collections = args[0].split(',')
             const regex = /\(([^)]+)\)/
             let result = this

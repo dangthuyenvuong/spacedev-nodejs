@@ -18,6 +18,8 @@ import userRouter from './src/routes/user'
 import reviewRouter from './src/routes/review'
 import fileRouter from './src/routes/file'
 import cors from 'cors'
+import './src/utils/morgan'
+import { getJson } from './src/utils/morgan'
 
 
 // đọc biến môi trường từ .env
@@ -36,8 +38,8 @@ var accessLogStream = rfs.createStream('access.log', {
 
 
 // Thay thế cho body-parse dùng để sử dụng req.body
-app.use(express.json())
 app.use('/uploads', express.static('./resources/uploads'))
+app.use(express.json())
 
 app.use(cors({
     methods: '*',
@@ -46,9 +48,17 @@ app.use(cors({
     ]
 }))
 
+app.use(getJson);
+
 app.use(logMiddleware)
 
-app.use(morgan(':method :url :status :req[content-length] - :response-time ms', { stream: accessLogStream }))
+app.use(morgan(`
+[:date[iso]] :remote-addr 
+[:method] :url (:status - :req[content-length] - :response-time ms)
+Authentication\: :user
+Body\: :body
+Response\: :response
+`, { stream: accessLogStream }))
 
 
 

@@ -15,7 +15,7 @@ import { ACCESS_TOKEN_EXPIRED, ACCESS_TOKEN_KEY, REFRESH_TOKEN_EXPIRED, REFRESH_
  */
 
 
-const generateToken = (user) => {
+export const generateToken = (user) => {
     const payload = { _id: user._id }
     const accessToken = jwt.sign(payload, ACCESS_TOKEN_KEY, { expiresIn: ACCESS_TOKEN_EXPIRED })
     const refreshToken = jwt.sign(payload, REFRESH_TOKEN_KEY, { expiresIn: REFRESH_TOKEN_EXPIRED })
@@ -46,7 +46,6 @@ export const AuthController = {
             const user = await User.findOne({
                 codeConfirm: code
             })
-            console.log(user)
             if (user) {
                 user.codeConfirm = null
                 user.confirmRedirect = null

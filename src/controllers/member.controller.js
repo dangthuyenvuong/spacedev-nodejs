@@ -3,11 +3,11 @@ import HttpResponse from "../utils/HttpResponse";
 
 export const MemberController = {
     getMember: async (req, res) => {
-        try {
-            HttpResponse.data(res, await Member.find())
-        } catch (err) {
-            HttpResponse.error(res, err)
-        }
+        const { name, ...filter } = req.query
+        HttpResponse.paginate(res, Member.findAndPaginate({
+            ...filter,
+            search: { name }
+        }))
     },
     createMember: async (req, res) => {
         try {

@@ -5,7 +5,13 @@ import { softDelete } from "../utils/softDelete";
 config()
 mongoose.set('strictQuery', false)
 mongoose.set('strictPopulate', false)
-// mongoose.set('toJSON', { virtuals: true, versionKey: false, transform: function (doc, ret) { delete ret._id } })
+mongoose.set('toJSON', {
+    virtuals: true,
+    versionKey: false,
+    transform: function (doc, ret) {
+        delete ret._id
+    }
+})
 mongoose.connect(process.env.DATABASE_STRING, (err) => {
     if (err) {
         console.log(err)
@@ -13,6 +19,13 @@ mongoose.connect(process.env.DATABASE_STRING, (err) => {
         console.log('Connect to mongoDB')
     }
 })
-
 mongoose.plugin(paginate)
 mongoose.plugin(softDelete)
+
+mongoose.plugin((schema) => {
+    schema.virtual('id').get(function () {
+        return this._id
+    }).set(function() {
+        this.id = this._id
+    })
+})

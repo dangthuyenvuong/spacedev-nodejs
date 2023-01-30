@@ -15,12 +15,13 @@ export const TaskController = {
         }
     },
     getTask: async (req, res) => {
-        try {
-            const task = await Task.findOne({})
-            HttpResponse.data(res, await Task.find())
-        } catch (err) {
-            HttpResponse.error(res, err)
-        }
+        const { name, ...filter } = req.query
+        HttpResponse.paginate(res, Task.findAndPaginate(
+            {
+                ...filter,
+                search: { name }
+            }
+        ))
     },
     getOneTask: async (req, res) => {
         try {

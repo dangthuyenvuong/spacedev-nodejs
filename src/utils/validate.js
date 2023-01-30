@@ -56,3 +56,7 @@ export const minMax = (min, max, message) => (value) => {
 export const minLength = (min, message = `Xin vui nhập ít nhất ${min} ký tự`) => (value) => {
     if(value && value.length < min) return message
 } 
+
+export const notEqual = (field, message = `Vui lòng nhập khác ${field}`) => (value, forms) => {
+    if(value && value === forms[field]) return message
+}

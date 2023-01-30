@@ -32,6 +32,7 @@ const userSchema = new Schema({
     birthday: Date,
     codeConfirm: {
         type: String,
+        unique: true,
         select: false
     },
     confirmRedirect: {
@@ -42,6 +43,9 @@ const userSchema = new Schema({
         type: Boolean,
         default: false,
         select: false,
+    },
+    lastSendEmail: {
+        type: Date,
     }
 }, {
     timestamps: true,

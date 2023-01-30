@@ -11,7 +11,6 @@ export const softDelete = function (schema, options) {
     schema.add({
         deletedAt: {
             type: Date,
-            default: null
         }
     })
 
