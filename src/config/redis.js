@@ -10,6 +10,7 @@ client.on("connect", function (err) {
 client.on('error', err => console.log('Redis Client Error', err));
 
 client.connect();
+
 // client.set('name', 'John Doe', redis.print);
 // client.get('name');
 

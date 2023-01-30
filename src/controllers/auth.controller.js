@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 import md5 from "md5"
 import { ACCESS_TOKEN_EXPIRED, ACCESS_TOKEN_KEY, REFRESH_TOKEN_EXPIRED, REFRESH_TOKEN_KEY } from "../constants/token"
 import User from "../models/user"
-import { createController } from "../utils/createController"
+import { createController } from '../utils/createController'
 
 /**
  * Login:
