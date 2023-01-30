@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import autoPopulate from 'mongoose-autopopulate'
+import CollectionNames from '../constants/collection'
 
 const taskSchema = new Schema({
     name: {
@@ -12,27 +12,29 @@ const taskSchema = new Schema({
     },
     categories: [{
         type: Schema.Types.ObjectId,
-        ref: 'task_categories',
-        autopopulate: { select: '-__v' }
+        ref: CollectionNames.TaskCategory,
     }],
     members: [{
         type: Schema.Types.ObjectId,
-        ref: 'members',
-        alias: 'demo',
-        autopopulate: { select: '-__v' }
+        ref: CollectionNames.User,
     }],
     startAt: Date,
-    endAt: Date
+    endAt: Date,
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: CollectionNames.User,
+    }
 }, {
     timestamps: true,
     statics: {
         findTaskWithRelation() {
-            return this.find().populate({ path: 'categories', select: '-__v' }).populate({ path: 'members', select: '-__v' })
+            return this.find().populate({ path: 'categories' }).populate({ path: 'members' })
+        },
+        checkAuthor() {
+
         }
     }
 })
-
-taskSchema.plugin(autoPopulate)
 
 export const Task = model('tasks', taskSchema)
 

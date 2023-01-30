@@ -3,7 +3,8 @@ import HttpResponse from "../utils/HttpResponse";
 
 export const CategoryController = {
     getCategories: async (req, res) => {
-        HttpResponse.data(res, await TaskCategory.find().select('-__v'))
+        const { name, ...filter } = req.query
+        HttpResponse.data(res, await TaskCategory.findAndPaginate({ ...filter, search: { name } }))
     },
     createCategory: async (req, res) => {
         try {

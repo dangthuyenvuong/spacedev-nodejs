@@ -2,6 +2,7 @@ import { Router } from "express";
 import { TaskController } from "../controllers/task.controller";
 import validator from "../middlewares/validator";
 import { required } from "../utils/validate";
+import authGuard from '../middlewares/authGuard'
 
 const taskRouter = Router()
 
@@ -10,14 +11,14 @@ const createTaskRule = {
     description: [required()],
 }
 
-taskRouter.post('', validator(createTaskRule), TaskController.createTask)
+taskRouter.post('', authGuard, validator(createTaskRule), TaskController.createTask)
 
-taskRouter.get('', TaskController.getTask)
+taskRouter.get('', authGuard, TaskController.getTask)
 
-taskRouter.get('/:id', TaskController.getOneTask)
+taskRouter.get('/:id', authGuard, TaskController.getOneTask)
 
-taskRouter.put('/:id', validator(createTaskRule), TaskController.updateTask)
+taskRouter.put('/:id', authGuard, validator(createTaskRule), TaskController.updateTask)
 
-taskRouter.delete('/:id', TaskController.deleteTask)
+taskRouter.delete('/:id', authGuard, TaskController.deleteTask)
 
 export default taskRouter

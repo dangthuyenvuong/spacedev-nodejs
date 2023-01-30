@@ -4,7 +4,9 @@ const CollectionNames = {
     Review: 'reviews',
     User: 'users',
     Register: 'registers',
-    Report: 'report'
+    Report: 'report',
+
+    TaskCategory: 'task_category'
 }
 
 export default CollectionNames

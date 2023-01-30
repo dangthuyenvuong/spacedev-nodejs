@@ -7,6 +7,7 @@ export const TaskController = {
             const { name, categories, members, description, startAt, endAt } = req.body
             const task = {
                 name, categories, members, description, startAt, endAt,
+                author: req.user._id
             }
 
             HttpResponse.data(res, await Task.create(task))
@@ -19,14 +20,18 @@ export const TaskController = {
         HttpResponse.paginate(res, Task.findAndPaginate(
             {
                 ...filter,
-                search: { name }
+                search: { name },
+                author: req.user._id
             }
         ))
     },
     getOneTask: async (req, res) => {
         try {
             const { id } = req.params
-            HttpResponse.data(res, await Task.findById(id))
+            HttpResponse.data(res, await Task.findOne({
+                _id: id,
+                author: req.user._id
+            }))
         } catch (err) {
             HttpResponse.error(res, err)
         }
@@ -37,7 +42,10 @@ export const TaskController = {
             const { id } = req.params
             const { name, categories, members, description, createdAt, startAt, endAt } = req.body
 
-            const task = await Task.updateOne(id, { name, categories, members, description, createdAt, startAt, endAt })
+            const task = await Task.updateOne({
+                _id: id,
+                author: req.user._id
+            }, { name, categories, members, description, createdAt, startAt, endAt })
             if (task) {
                 HttpResponse.data(res, task)
             } else {
@@ -50,7 +58,10 @@ export const TaskController = {
     },
     deleteTask: async (req, res, next) => {
         const { id } = req.params
-        const check = await Task.deleteById(id)
+        const check = await Task.deleteOne({
+            _id: id,
+            author: req.user._id
+        })
         if (check) {
             res.sendStatus(204)
         } else {
